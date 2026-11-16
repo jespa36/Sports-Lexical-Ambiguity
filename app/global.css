@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* TEMP: makes the skeleton visible. Delete this block when you start styling. */
+* {
+  outline: 1px dashed rgba(255, 0, 0, 0.4);
+  outline-offset: -1px;
+}
+main :empty {
+  min-height: 2rem;
+  min-width: 2rem;
+}
