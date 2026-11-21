@@ -39,65 +39,94 @@ export interface CorpusEntry {
 export const SPORTSTWT_CORPUS: CorpusEntry[] = [
   // ================= SOCCER / FUTBOL (3 Active) =================
   {
-    id: "soccer-01",
+    id: "soc-01",
     community: "Soccer/Futbol",
-    tweetText: "",
-    targetExpression: "",
-    context: "",
-    tweetURL: "",
+    tweetText:
+      "wearing my barça rain jacket and someone said visca barça to me",
+    targetExpression: "visca barça",
+    context:
+      "Posted by an FC Barcelona supporter (@simpleculer) recounting a real-life fan greeting while wearing a Barça rain jacket, with replies referencing the 'Visca Catalunya' call-and-response and praising the use of the cedilla (ç) in 'Barça'.",
+    tweetURL: "https://x.com/simpleculer/status/2123418270791524631?a=2HwgOjuylTpL7H_8GDk&s=46",
     category: "Lexical Ambiguity (Polysemy)",
-    literalMeaning: "",
-    sociolectMeaning: "",
+    literalMeaning:
+      "Wearing rainwear bearing the name of a soccer club and receiving a greeting in Catalan.",
+    sociolectMeaning:
+      "A celebratory Catalan rally cry ('Long live Barça!') used as an in-group greeting among FC Barcelona fans, where spelling 'Barça' with 'ç' preserves the soft /s/ sound and signals respect for Catalan identity rather than spelling 'Barca' (which shifts to a hard /k/ sound meaning 'boat').",
     pragmatics: {
-      primaryMechanism: "Speech Act",
-      analysis: "",
+      primaryMechanism: "In-group signaling",
+      secondaryMechanisms: ["Speech Act", "Conversational Implicature"],
+      analysis:
+        "Code-switching from English into Catalan ('visca barça', alongside reply references to 'Visca Catalunya' and handles like 'culer') works as a warm greeting speech act and in-group identity marker among Barça supporters. " +
+        "The cedilla in 'Barça' also carries real cultural weight: dropping 'ç' to 'c' changes the pronunciation from a soft /s/ to a hard /k/ (meaning 'boat' in Catalan and Spanish), so spelling it properly signals awareness of the club's Catalan roots.",
     },
     nlpComparison: {
       standardLabel: "Neutral",
       actualIntent: "Positive",
-      whyNLPFails: "",
+      whyNLPFails:
+        "Standard sentiment models often read a short everyday narrative as neutral and ASCII-normalization pipelines frequently strip diacritics like 'ç', missing the code-switched fan greeting, cultural identity cues, and warm positive intent.",
     },
   },
   {
-    id: "soccer-02",
+    id: "soc-02",
     community: "Soccer/Futbol",
-    tweetText: "",
-    targetExpression: "",
-    context: "",
-    tweetURL: "",
+    tweetText:
+      "CITY washed\n" +
+      "Bayern injury crisis\n" +
+      "PSG injury crisis\n" +
+      "Barca are bottlers\n" +
+      "Arsenal's attack is trash..",
+    targetExpression: "CITY washed / ... Barca are bottlers",
+    context:
+      "Posted by a Real Madrid supporter (@annxsrmfc) with a reaction GIF and trailing ellipsis dismissing major Champions League rivals to imply Real Madrid is set to win again, sparking replies from a fellow Madrid fan ('This could only mean one thing…'), a Barcelona fan ('cry vardrid dog'), and a City fan ('Just don't let arsenal win').",
     category: "Lexical Ambiguity (Polysemy)",
-    literalMeaning: "",
-    sociolectMeaning: "",
+    literalMeaning:
+      "Listing rival clubs as having been cleaned/rinsed, suffering medical injuries, bottling/pouring liquids, or having literal garbage in their attack.",
+    sociolectMeaning:
+      "Dismissing major Champions League rivals as past their prime ('washed'), injury-hampered, choke artists ('bottlers'), or lacking firepower to push the narrative that Real Madrid will claim the trophy.",
     pragmatics: {
-      primaryMechanism: "Speech Act",
-      analysis: "",
+      primaryMechanism: "Conversational Implicature",
+      secondaryMechanisms: ["In-group signaling", "Banter / Face-threat"],
+      analysis:
+        "The tweet relies heavily on conversational implicature: it never names Real Madrid directly, leaving the conclusion ('...so Real Madrid is winning the Champions League') unstated via a trailing ellipsis and GIF while signaling allegiance through the handle ('rmfc') and bio. " +
+        "Compact Football Twitter slang ('washed', 'bottlers') and reply insults like 'Vardrid' (a blend of VAR and Madrid) act as tribal shorthand, while replies from other fanbases turn the thread into layered rival banter—including a City fan hoping anyone but Arsenal wins.",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
-      actualIntent: "Positive",
-      whyNLPFails: "",
+      standardLabel: "Negative",
+      actualIntent: "Sarcastic/Banter",
+      whyNLPFails:
+        "Standard sentiment tools latch onto words like 'washed', 'injury crisis', 'bottlers', and 'trash' as negative and miss the unstated Real Madrid agenda-pushing implicature, handle/bio cues, and Football Twitter banter.",
     },
   },
+  
   {
-    id: "soccer-03",
+    id: "soc-03",
     community: "Soccer/Futbol",
-    tweetText: "",
-    targetExpression: "",
-    context: "",
-    tweetURL: "",
-    category: "Lexical Ambiguity (Polysemy)",
-    literalMeaning: "",
-    sociolectMeaning: "",
+    tweetText:
+      "Cubarsí giving us an early trailer of what's going to happen in UCL KOs",
+    targetExpression: "early trailer of what's going to happen in UCL KOs",
+    context:
+      "Posted by an FC Barcelona supporter (@AdiiiFCB) reacting to a defensive mistake by young center-back Pau Cubarsí during an international match, framing it as a preview of future UEFA Champions League knockout heartbreak alongside replies mocking Lamine Yamal ('ballon dor winner') and calling out 'bozo defenders'.",
+    tweetURL: "https://x.com/adiiifcb/status/2122065380915249561",
+    category: "Multi-Word Expression",
+    literalMeaning:
+      "A short promotional preview clip of a film showing scenes from upcoming UEFA Champions League knockout games.",
+    sociolectMeaning:
+      "A defensive blunder seen as an early warning sign of another calamitous Barcelona exit in the Champions League knockouts.",
     pragmatics: {
-      primaryMechanism: "Speech Act",
-      analysis: "",
+      primaryMechanism: "Conversational Implicature",
+      secondaryMechanisms: ["Banter / Face-threat", "In-group signaling"],
+      analysis:
+        "Framing a defensive error as an 'early trailer' uses Football Twitter's recurring 'scripted movie' metaphor to implicate that Barcelona's Champions League knockout troubles are already foreshadowed. " +
+        "Even though the poster supports Barça, fans routinely roast their own side with dark humor after costly mistakes, while replies amplify the banter through sarcastic hype ('ballon dor winner lamine'), 'bozo defender' slander for big-game brain fades, and follow-up 'movie' jokes.",
     },
     nlpComparison: {
       standardLabel: "Neutral",
-      actualIntent: "Positive",
-      whyNLPFails: "",
+      actualIntent: "Sarcastic/Banter",
+      whyNLPFails:
+        "Standard sentiment models treat 'early trailer' as literal media/event commentary—and miss the sarcasm in phrases like 'ballon dor winner'—overlooking the self-deprecating Champions League joke and rival banter.",
     },
   },
+
 
   // ================= NBA (3 Active) =================
   {
@@ -252,7 +281,7 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
     targetExpression: '"suspending" ... while he\'s on IR',
     context:
       "Reacting to the NFL's three-game personal conduct suspension of Rams wide receiver Puka Nacua while he is already on Injured Reserve (and likely out for the season following knee surgery), paired with a video of someone pretending to help lift an item for trash and then high-fiving the person actually carrying it.",
-    tweetURL: "https://x.com/42cyc/status/2123516961804206314?a=5aorgMqYcj0a8zyctJs&s=46"
+    tweetURL: "https://x.com/42cyc/status/2123516961804206314?a=5aorgMqYcj0a8zyctJs&s=46",
     category: "Lexical Ambiguity (Polysemy)",
     literalMeaning:
       "Barring a player from participating in games as a disciplinary penalty.",
@@ -573,23 +602,31 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
   {
     id: "nfl-04",
     community: "NFL",
-    tweetText: "",
-    targetExpression: "",
-    context: "",
-    tweetURL: "",
+    tweetText: "fuck he so cold",
+    targetExpression: "fuck he so cold",
+    context:
+      "Posted by a Seattle Seahawks fan (@NotLikeRuss) reacting to an @NFL highlight clip during a November 15, 2026 Chiefs vs. 49ers game, with replies calling out 'chain dangling aura' and hyping a potential Super Bowl rematch.",
+    tweetURL: "https://x.com/NotLikeRuss/status/2122071528338776198",
     category: "Lexical Ambiguity (Polysemy)",
-    literalMeaning: "",
-    sociolectMeaning: "",
+    literalMeaning:
+      "Having a low temperature or lacking warmth/emotion.",
+    sociolectMeaning:
+      "Effortlessly skilled, composed under pressure, and stylish during a big play.",
     pragmatics: {
-      primaryMechanism: "Speech Act",
-      analysis: "",
+      primaryMechanism: "In-group signaling",
+      secondaryMechanisms: ["Speech Act", "Conversational Implicature"],
+      analysis:
+        "Here, 'fuck he so cold' is a straight-up speech act of praise—even though @NotLikeRuss is a Seahawks fan, they're giving props to a Chiefs play against Seattle's division rival, the 49ers. " +
+        "Replies adding 'chain dangling aura' and 'See you in the bowl' lean into shared Sports Twitter slang where 'aura' means cool presence and swagger, while temporary Seahawks–Chiefs solidarity against San Francisco sets up banter around a possible Super Bowl matchup.",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
+      standardLabel: "Negative",
       actualIntent: "Positive",
-      whyNLPFails: "",
+      whyNLPFails:
+        "Standard sentiment tools flag 'fuck' and read 'cold' as negative or literal temperature, missing the slang shift to 'smooth/skilled' and the cross-fanbase hype against a rival team.",
     },
   },
+
   {
     id: "nfl-05",
     community: "NFL",
