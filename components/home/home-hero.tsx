@@ -35,7 +35,7 @@ export function HomeHero() {
         </p>
 
         <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-6xl">
-          Why Literal NLP Misunderstands{' '}
+          Why NLP Tools Misunderstand {' '}
           <span className="text-sky-300">Online Sports Discourse</span>
         </h1>
 

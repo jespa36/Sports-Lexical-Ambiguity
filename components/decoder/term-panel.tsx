@@ -1,42 +1,80 @@
+import { CorpusEntry } from '@/lib/corpus'
+
 export function TermPanel({
-  selectedId,
+  entry,
   onClear,
 }: {
-  selectedId: string | null
+  entry: CorpusEntry | null
   onClear: () => void
 }) {
-  void selectedId
-  void onClear
+  if (!entry) {
+    return (
+      <div className="flex flex-col gap-4 p-4 md:p-6">
+        <div>
+          <p>Select a card from the grid to inspect its sociolect breakdown.</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-4 p-4 md:p-6">
-      {/* <--[Empty state: nothing selected]--> */}
-      <div />
-
-      {/* <--[Selected state: header row with clear button]--> */}
       <div className="flex items-start justify-between gap-3">
-        <div>{/* <--[Term + eyebrow]--> */}</div>
-        <button type="button" />
+        <div>
+          <p>{entry.community}</p>
+          <h3>{entry.targetExpression}</h3>
+        </div>
+        <button type="button" onClick={onClear}>
+          Clear
+        </button>
       </div>
 
-      {/* <--[Facts: 2-col key/value grid]--> */}
       <dl className="grid grid-cols-2 gap-3 pt-1">
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i}>
-            <dt />
-            <dd />
-          </div>
-        ))}
+        <div>
+          <dt>Category</dt>
+          <dd>{entry.category}</dd>
+        </div>
+        <div>
+          <dt>Mechanism</dt>
+          <dd>{entry.pragmatics.primaryMechanism}</dd>
+        </div>
+        <div>
+          <dt>Standard NLP</dt>
+          <dd>{entry.nlpComparison.standardLabel}</dd>
+        </div>
+        <div>
+          <dt>Actual Intent</dt>
+          <dd>{entry.nlpComparison.actualIntent}</dd>
+        </div>
       </dl>
 
-      {/* <--[Usage list]--> */}
-      <ul className="flex flex-col gap-2" />
+      <ul className="flex flex-col gap-2">
+        <li>
+          <strong>Literal Meaning:</strong> {entry.literalMeaning}
+        </li>
+        <li>
+          <strong>Sociolect Meaning:</strong> {entry.sociolectMeaning}
+        </li>
+        <li>
+          <strong>Pragmatic Analysis:</strong> {entry.pragmatics.analysis}
+        </li>
+        <li>
+          <strong>Why NLP Fails:</strong> {entry.nlpComparison.whyNLPFails}
+        </li>
+      </ul>
 
-      {/* <--[Example tweets stack]--> */}
       <div className="flex flex-col gap-3">
-        {[0, 1].map((i) => (
-          <article key={i} className="p-3" />
-        ))}
+        <article className="border p-3">
+          <p>{entry.tweetText}</p>
+        </article>
+        <article className="border p-3">
+          <p>{entry.context}</p>
+          {entry.tweetURL && (
+            <a href={entry.tweetURL} target="_blank" rel="noopener noreferrer">
+              View source post
+            </a>
+          )}
+        </article>
       </div>
     </div>
   )
