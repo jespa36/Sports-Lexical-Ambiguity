@@ -1,11 +1,6 @@
 import { SportsCommunity, FeatureCategory } from '@/lib/corpus'
 
-const COMMUNITIES: ('All' | SportsCommunity)[] = [
-  'All',
-  'Soccer/Futbol',
-  'NBA',
-  'NFL',
-]
+const COMMUNITIES: ('All' | SportsCommunity)[] = ['All', 'Soccer/Futbol', 'NBA', 'NFL']
 
 const CATEGORIES: ('All' | FeatureCategory)[] = [
   'All',
@@ -14,6 +9,9 @@ const CATEGORIES: ('All' | FeatureCategory)[] = [
   'Multi-Word Expression',
   'Morphological Blend',
 ]
+
+const FIELD =
+  'border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-900 focus:border-[#0E1E5B] focus:outline-none focus:ring-1 focus:ring-[#0E1E5B]'
 
 export function DecoderToolbar({
   selectedCommunity,
@@ -31,25 +29,40 @@ export function DecoderToolbar({
   onSearchChange: (value: string) => void
 }) {
   return (
-    <div className="flex flex-wrap items-center gap-3 px-4 py-3 md:px-6">
-      <div role="radiogroup" aria-label="Community filter" className="grid w-full grid-cols-4 sm:flex sm:w-auto">
-        {COMMUNITIES.map((comm) => (
-          <button
-            key={comm}
-            type="button"
-            role="radio"
-            aria-checked={selectedCommunity === comm}
-            onClick={() => onCommunityChange(comm)}
-            className="px-1.5 py-1.5 sm:px-3"
-          >
-            {comm === 'Soccer/Futbol' ? 'Soccer' : comm}
-          </button>
-        ))}
+    <div className="flex flex-wrap items-end gap-4 border-b border-slate-300 bg-slate-50 px-4 py-4 md:px-6">
+      <div>
+        <p className="mb-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+          Community
+        </p>
+        <div role="radiogroup" aria-label="Community filter" className="flex">
+          {COMMUNITIES.map((comm) => {
+            const active = selectedCommunity === comm
+            return (
+              <button
+                key={comm}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() => onCommunityChange(comm)}
+                className={`-ml-px border px-3 py-1.5 text-sm font-medium transition first:ml-0 ${
+                  active
+                    ? 'z-10 border-[#0E1E5B] bg-[#0E1E5B] text-white'
+                    : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-100'
+                }`}
+              >
+                {comm === 'Soccer/Futbol' ? 'Soccer' : comm}
+              </button>
+            )
+          })}
+        </div>
       </div>
 
-      <label className="flex items-center gap-2">
-        <span>Category</span>
+      <label className="block">
+        <span className="mb-1.5 block font-mono text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+          Category
+        </span>
         <select
+          className={FIELD}
           value={selectedCategory}
           onChange={(e) => onCategoryChange(e.target.value as 'All' | FeatureCategory)}
         >
@@ -61,10 +74,13 @@ export function DecoderToolbar({
         </select>
       </label>
 
-      <label className="flex items-center gap-2 sm:ml-auto">
-        <span>Search</span>
+      <label className="block w-full sm:ml-auto sm:w-64">
+        <span className="mb-1.5 block font-mono text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+          Search
+        </span>
         <input
           type="search"
+          className={`${FIELD} w-full`}
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Filter terms or posts..."

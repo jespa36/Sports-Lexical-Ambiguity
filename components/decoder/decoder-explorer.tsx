@@ -57,23 +57,26 @@ export function DecoderExplorer() {
             onSearchChange={setSearchQuery}
           />
 
-          <p className="px-4 py-2 md:px-6">
-            Showing {filteredEntries.length} of {SPORTSTWT_CORPUS.length} entries. Select an expression to inspect its breakdown.
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 bg-white px-4 py-2 md:px-6">
+            <p className="text-xs text-slate-600">
+              Showing {filteredEntries.length} of {SPORTSTWT_CORPUS.length} entries
+            </p>
+            <CommunityLegend />
+          </div>
 
-          <div className="relative h-[60vh] min-h-[440px] lg:h-[720px]">
+          <div className="h-[60vh] min-h-[440px] lg:h-[720px]">
             <TermList
               entries={filteredEntries}
               selectedId={selectedEntry?.id ?? null}
               onSelect={setSelectedId}
             />
-            <div className="pointer-events-none absolute bottom-4 left-4 z-10">
-              <CommunityLegend />
-            </div>
           </div>
         </div>
 
-        <aside aria-live="polite" className="lg:max-h-[812px] lg:overflow-y-auto">
+        <aside
+          aria-live="polite"
+          className="border-t border-slate-300 bg-white lg:max-h-[812px] lg:overflow-y-auto lg:border-l lg:border-t-0"
+        >
           <TermPanel
             entry={selectedEntry}
             onClear={() => setSelectedId(null)}
