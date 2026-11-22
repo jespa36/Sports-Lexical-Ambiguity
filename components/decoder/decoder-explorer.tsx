@@ -46,8 +46,8 @@ export function DecoderExplorer() {
         Sociolect Decoder
       </h2>
 
-      <div className="grid lg:grid-cols-[1fr_380px]">
-        <div className="flex flex-col">
+      <div className="grid border-y border-slate-300 bg-white lg:grid-cols-[1fr_420px]">
+        <div className="flex flex-col border-b border-slate-300 lg:border-b-0 lg:border-r">
           <DecoderToolbar
             selectedCommunity={selectedCommunity}
             onCommunityChange={setSelectedCommunity}
@@ -57,11 +57,11 @@ export function DecoderExplorer() {
             onSearchChange={setSearchQuery}
           />
 
-          <p className="px-4 py-2 md:px-6">
-            Showing {filteredEntries.length} of {SPORTSTWT_CORPUS.length} entries. Select an expression to inspect its breakdown.
+          <p className="border-b border-slate-200 bg-slate-50 px-4 py-2 font-mono text-xs text-slate-600 md:px-6">
+            Showing {filteredEntries.length} of {SPORTSTWT_CORPUS.length} entries // Click any card to inspect pragmatic breakdown
           </p>
 
-          <div className="relative h-[60vh] min-h-[440px] lg:h-[720px]">
+          <div className="relative h-[60vh] min-h-[440px] bg-slate-50/50 lg:h-[720px]">
             <TermList
               entries={filteredEntries}
               selectedId={selectedEntry?.id ?? null}
@@ -73,7 +73,10 @@ export function DecoderExplorer() {
           </div>
         </div>
 
-        <aside aria-live="polite" className="lg:max-h-[812px] lg:overflow-y-auto">
+        <aside
+          aria-live="polite"
+          className="bg-slate-50 lg:max-h-[812px] lg:overflow-y-auto"
+        >
           <TermPanel
             entry={selectedEntry}
             onClear={() => setSelectedId(null)}
