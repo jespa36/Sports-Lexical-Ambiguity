@@ -4,10 +4,12 @@ import type { VaderTrigger } from '@/lib/vader'
 export function TriggerList({ triggers }: { triggers: VaderTrigger[] }) {
   if (triggers.length === 0) {
     return (
-      <span>
-        None. No word in this post is in the VADER lexicon, so VADER has nothing to score.
+      <span className="block border border-slate-200 bg-slate-50 px-3 py-2 text-xs leading-relaxed text-slate-600">
+        <strong className="font-semibold text-slate-800">No lexicon matches found:</strong>{" "}
+        None of the words in this post appear in VADER&apos;s general-English dictionary,
+        so the baseline defaults to a neutral <span className="font-mono">0.000</span> score.
       </span>
-    )
+    );
   }
 
   return (

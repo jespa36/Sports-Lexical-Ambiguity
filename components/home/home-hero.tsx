@@ -31,7 +31,7 @@ export function HomeHero() {
         <p className="inline-flex items-center gap-2 border-b border-sky-300/50 pb-1 font-mono text-xs font-medium uppercase tracking-widest text-sky-300">
           <span>LING 230 // Semantics, Pragmatics &amp; Discourse</span>
           <span>•</span>
-          <span>Stage 2 Prototype</span>
+          <span>Sociolects</span>
         </p>
 
         <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-6xl">
