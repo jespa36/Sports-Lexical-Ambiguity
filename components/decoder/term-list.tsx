@@ -31,10 +31,10 @@ export function TermList({
                 type="button"
                 onClick={() => onSelect(entry.id)}
                 aria-pressed={isSelected}
-                className={`flex h-full w-full flex-col gap-2 border border-l-4 bg-white p-4 text-left transition ${style.bar} ${
+                className={`flex h-full w-full flex-col gap-2 border bg-white p-4 text-left transition ${
                   isSelected
                     ? 'border-[#0E1E5B] ring-1 ring-[#0E1E5B]'
-                    : 'border-slate-300 hover:border-slate-400 hover:shadow-sm'
+                    : 'border-slate-300 hover:border-slate-500'
                 }`}
               >
                 <span className="flex items-center justify-between gap-2">

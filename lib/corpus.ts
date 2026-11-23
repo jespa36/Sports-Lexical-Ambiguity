@@ -1,3 +1,8 @@
+import { scoreVader, type VaderResult } from "./vader";
+
+/* Entries the project is aiming for (the corpus is a work in progress). */
+export const TARGET_ENTRIES = 30;
+
 export type SportsCommunity = "Soccer/Futbol" | "NBA" | "NFL";
 
 export type FeatureCategory =
@@ -13,7 +18,10 @@ export type PragmaticMechanism =
   | "In-group signaling"
   | "Banter / Face-threat";
 
-export interface CorpusEntry {
+export type FanIntent = "Positive" | "Neutral" | "Sarcastic/Banter";
+
+/* What is hand-annotated in this file. The VADER baseline is computed, not typed in. */
+export interface CorpusEntryInput {
   id: string;
   community: SportsCommunity;
   tweetText: string;
@@ -30,13 +38,17 @@ export interface CorpusEntry {
     analysis: string;
   };
   nlpComparison: {
-    standardLabel: "Positive" | "Neutral" | "Negative";
-    actualIntent: "Positive" | "Neutral" | "Sarcastic/Banter";
+    actualIntent: FanIntent;
     whyNLPFails: string;
   };
 }
 
-export const SPORTSTWT_CORPUS: CorpusEntry[] = [
+export interface CorpusEntry extends CorpusEntryInput {
+  /** Real VADER output for tweetText: compound score, label, and lexicon trigger words. */
+  vaderBaseline: VaderResult;
+}
+
+const CORPUS_INPUT: CorpusEntryInput[] = [
   // ================= SOCCER / FUTBOL (3 Active) =================
   {
     id: "soc-01",
@@ -60,7 +72,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "The cedilla in 'Barça' also carries real cultural weight: dropping 'ç' to 'c' changes the pronunciation from a soft /s/ to a hard /k/ (meaning 'boat' in Catalan and Spanish), so spelling it properly signals awareness of the club's Catalan roots.",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails:
         "Standard sentiment models often read a short everyday narrative as neutral and ASCII-normalization pipelines frequently strip diacritics like 'ç', missing the code-switched fan greeting, cultural identity cues, and warm positive intent.",
@@ -91,7 +102,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "Compact Football Twitter slang ('washed', 'bottlers') and reply insults like 'Vardrid' (a blend of VAR and Madrid) act as tribal shorthand, while replies from other fanbases turn the thread into layered rival banter—including a City fan hoping anyone but Arsenal wins.",
     },
     nlpComparison: {
-      standardLabel: "Negative",
       actualIntent: "Sarcastic/Banter",
       whyNLPFails:
         "Standard sentiment tools latch onto words like 'washed', 'injury crisis', 'bottlers', and 'trash' as negative and miss the unstated Real Madrid agenda-pushing implicature, handle/bio cues, and Football Twitter banter.",
@@ -120,7 +130,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "Even though the poster supports Barça, fans routinely roast their own side with dark humor after costly mistakes, while replies amplify the banter through sarcastic hype ('ballon dor winner lamine'), 'bozo defender' slander for big-game brain fades, and follow-up 'movie' jokes.",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Sarcastic/Banter",
       whyNLPFails:
         "Standard sentiment models treat 'early trailer' as literal media/event commentary—and miss the sarcasm in phrases like 'ballon dor winner'—overlooking the self-deprecating Champions League joke and rival banter.",
@@ -149,7 +158,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       "while playfully blurring the line between supporter and athlete as if the poster is physically on the court. " 
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "Standard sentiment tools read 'glazing' by its literal dictionary sense—putting a glossy coating on a surface—and" +
       "miss how the pronoun 'us' plus the Adam Silver reference turns a mock accusation into genuine hype for Wembanyama.",
@@ -180,7 +188,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "Labeling the fictional coworker 'Coworker FC' also borrows 'FC' from soccer (Football Club), where NBA and NFL Twitter have shifted it to mean 'Fan Club' to playfully group casual fans together as their own mock fanbase.",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Sarcastic/Banter",
       whyNLPFails:
         "Standard sentiment tools read 'bronze' as a neutral noun and take the made-up 'HR meeting' complaint at face value, missing the 'LeBronze' slander, the hyperbolic joke, and the soccer-borrowed 'FC' ('Fan Club') label.",
@@ -209,7 +216,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "The profanity 'fuckery' undergoes valence inversion—instead of complaining about annoying behavior, it expresses amazement at how long LeBron has stayed at an MVP level.",
     },
     nlpComparison: {
-      standardLabel: "Negative",
       actualIntent: "Positive",
       whyNLPFails:
         "Standard sentiment models immediately flag the profanity 'fuckery' as negative and miss both the valence inversion and the callback to the 2015 LeBron tweet.",
@@ -239,7 +245,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "Even with 'what the fuck' right after, the poster is venting frustration through exaggerated sports humor rather than making a literal claim.",
     },
     nlpComparison: {
-      standardLabel: "Negative",
       actualIntent: "Sarcastic/Banter",
       whyNLPFails:
         "Standard sentiment tools get tripped up by 'what the fuck' and take 'threw a Wawa Hoagiefest' literally, missing the recurring NFL 'thrown sandwich' joke and the Philly local reference.",
@@ -267,7 +272,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "Calling out 'red40 liquid iv mckinstry as cb1' riffs on Kool-Aid McKinstry's nickname by swapping in artificial red dye and a hydration packet, making the punchline that New Orleans shouldn't talk big with him as CB1.",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Sarcastic/Banter",
       whyNLPFails:
         "Standard sentiment tools read 'blitz', 'red40', 'liquid iv', and '226 bookmarks' as neutral or literal details and miss the receipt-bookmarking setup, 'FC' fan-club shift, and the Kool-Aid McKinstry nickname riff.",
@@ -296,7 +300,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "Even though he still forfeits roughly $961,000 in game checks and faces a warning about future violations or his diversion program, fans are calling out the timing because on the surface it looks like a convenient way to knock out the ban while he's sidelined anyway.",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Sarcastic/Banter",
       whyNLPFails:
         "Standard sentiment tools read 'suspending' as a straightforward disciplinary news update and miss both the scare-quote irony around an IR suspension and the visual joke of faking effort for a high-five.",
@@ -324,7 +327,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -344,7 +346,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -364,7 +365,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -384,7 +384,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -404,7 +403,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -424,7 +422,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -445,7 +442,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -468,7 +464,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -488,7 +483,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -508,7 +502,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -528,7 +521,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -548,7 +540,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -569,7 +560,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -590,7 +580,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -620,7 +609,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
         "Replies adding 'chain dangling aura' and 'See you in the bowl' lean into shared Sports Twitter slang where 'aura' means cool presence and swagger, while temporary Seahawks–Chiefs solidarity against San Francisco sets up banter around a possible Super Bowl matchup.",
     },
     nlpComparison: {
-      standardLabel: "Negative",
       actualIntent: "Positive",
       whyNLPFails:
         "Standard sentiment tools flag 'fuck' and read 'cold' as negative or literal temperature, missing the slang shift to 'smooth/skilled' and the cross-fanbase hype against a rival team.",
@@ -642,7 +630,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -662,7 +649,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -682,7 +668,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -702,7 +687,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -722,7 +706,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -742,7 +725,6 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
       analysis: "",
     },
     nlpComparison: {
-      standardLabel: "Neutral",
       actualIntent: "Positive",
       whyNLPFails: "",
     },
@@ -750,3 +732,9 @@ export const SPORTSTWT_CORPUS: CorpusEntry[] = [
 
   */
 ];
+
+/* Every entry gets its baseline from real VADER output. */
+export const SPORTSTWT_CORPUS: CorpusEntry[] = CORPUS_INPUT.map((entry) => ({
+  ...entry,
+  vaderBaseline: scoreVader(entry.tweetText),
+}));

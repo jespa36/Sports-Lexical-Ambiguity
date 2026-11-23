@@ -1,4 +1,6 @@
 import { CorpusEntry } from '@/lib/corpus'
+import { TriggerList } from '@/components/vader/trigger-list'
+import { formatCompound } from '@/lib/vader'
 import { COMMUNITY_STYLES } from './community-styles'
 
 const LABEL = 'font-mono text-[11px] font-semibold uppercase tracking-widest text-slate-500'
@@ -51,11 +53,14 @@ export function TermPanel({
         </button>
       </div>
 
-      {/* The core contrast of the project: what a baseline model says vs. what fans mean. */}
+      {/* The core contrast of the project: what the VADER baseline says vs. what fans mean. */}
       <div className="grid grid-cols-2 border border-slate-300">
         <div className="border-r border-slate-300 p-3">
-          <p className={LABEL}>Standard NLP</p>
-          <p className="mt-1 text-sm font-bold text-slate-900">{entry.nlpComparison.standardLabel}</p>
+          <p className={LABEL}>VADER (rule-based baseline)</p>
+          <p className="mt-1 text-sm font-bold text-slate-900">{entry.vaderBaseline.label}</p>
+          <p className="mt-0.5 font-mono text-xs text-slate-600">
+            compound {formatCompound(entry.vaderBaseline.compound)}
+          </p>
         </div>
         <div className="bg-[#0E1E5B] p-3 text-white">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-blue-200">
@@ -64,6 +69,13 @@ export function TermPanel({
           <p className="mt-1 text-sm font-bold">{entry.nlpComparison.actualIntent}</p>
         </div>
       </div>
+
+      <section>
+        <h4 className={LABEL}>VADER trigger words</h4>
+        <div className="mt-1.5 text-sm leading-relaxed text-slate-800">
+          <TriggerList triggers={entry.vaderBaseline.triggers} />
+        </div>
+      </section>
 
       <figure className="border-l-4 border-slate-300 bg-slate-50 p-3">
         <blockquote className="whitespace-pre-line text-sm leading-relaxed text-slate-800">
@@ -98,7 +110,7 @@ export function TermPanel({
       </dl>
 
       <Block title="Pragmatic analysis">{entry.pragmatics.analysis}</Block>
-      <Block title="Why NLP fails">{entry.nlpComparison.whyNLPFails}</Block>
+      <Block title="Why VADER misreads it">{entry.nlpComparison.whyNLPFails}</Block>
       <Block title="Context">{entry.context}</Block>
     </div>
   )
