@@ -2,22 +2,22 @@ export function RationaleEssay() {
   return (
     <article className="mx-auto max-w-4xl space-y-12 px-6 py-12">
       {/* Top Overview Bar */}
-      <div className="grid grid-cols-1 gap-6 border-y border-neutral-800 py-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 border-y border-slate-200 py-6 md:grid-cols-2">
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
             Option 2 Project
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-neutral-300">
+          <p className="mt-2 text-sm leading-relaxed text-slate-700">
             Interactive Next.js website hosted on GitHub Pages, paired with this
             rationale essay and final presentation.
           </p>
         </div>
 
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
             Communities &amp; Baseline Tested
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-neutral-300">
+          <p className="mt-2 text-sm leading-relaxed text-slate-700">
             NBA, NFL, and Soccer/Fútbol Twitter posts tested against VADER
             sentiment scoring in the browser.
           </p>
@@ -27,16 +27,16 @@ export function RationaleEssay() {
       {/* 1. Artifact Description */}
       <section className="space-y-6">
         <header>
-          <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">
+          <span className="font-mono text-xs uppercase tracking-wider text-emerald-700">
             01 // Artifact Description
           </span>
-          <h2 className="mt-1 text-2xl font-bold tracking-tight">
+          <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             1. Artifact Description
           </h2>
         </header>
 
-        <div className="space-y-4 text-base leading-relaxed text-neutral-300">
-          <h3 className="text-lg font-semibold text-neutral-100">
+        <div className="space-y-4 text-base leading-relaxed text-slate-700">
+          <h3 className="text-lg font-semibold text-slate-900">
             Project Overview
           </h3>
           <p>
@@ -47,7 +47,7 @@ export function RationaleEssay() {
             same thing during a live game as they do in a kitchen—they depend on
             who is posting, who they&rsquo;re talking to, and what just happened
             on the field or court. I built{" "}
-            <strong className="font-medium text-neutral-100">
+            <strong className="font-semibold text-slate-900">
               Sports-Lexical-Ambiguity
             </strong>{" "}
             on GitHub Pages to compare how NBA, NFL, and Soccer/Fútbol Twitter
@@ -55,7 +55,7 @@ export function RationaleEssay() {
             tools misread them.
           </p>
 
-          <h3 className="pt-2 text-lg font-semibold text-neutral-100">
+          <h3 className="pt-2 text-lg font-semibold text-slate-900">
             Architecture &amp; Components
           </h3>
           <p>
@@ -65,14 +65,14 @@ export function RationaleEssay() {
           </p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong className="font-medium text-neutral-100">
+              <strong className="font-semibold text-slate-900">
                 Landing Page (/):
               </strong>{" "}
               Shows the main contrast between literal dictionary meanings and
               how fans actually talk across the three leagues.
             </li>
             <li>
-              <strong className="font-medium text-neutral-100">
+              <strong className="font-semibold text-slate-900">
                 Sociolect Decoder (/decoder/):
               </strong>{" "}
               Breaks down real posts side-by-side, comparing standard word
@@ -80,7 +80,7 @@ export function RationaleEssay() {
               context.
             </li>
             <li>
-              <strong className="font-medium text-neutral-100">
+              <strong className="font-semibold text-slate-900">
                 Sentiment Playground (/playground/):
               </strong>{" "}
               Lets visitors pick sample tweets or paste their own sports posts
@@ -88,7 +88,7 @@ export function RationaleEssay() {
               score comes back neutral or backwards.
             </li>
             <li>
-              <strong className="font-medium text-neutral-100">
+              <strong className="font-semibold text-slate-900">
                 Corpus Findings &amp; Methodology (/findings/ &amp; /method/):
               </strong>{" "}
               Lays out how the posts were tagged, where VADER missed the mark in
@@ -99,18 +99,18 @@ export function RationaleEssay() {
       </section>
 
       {/* 2. Intellectual Context & Disciplinary Grounding */}
-      <section className="space-y-6 border-t border-neutral-800 pt-10">
+      <section className="space-y-6 border-t border-slate-200 pt-10">
         <header>
-          <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">
+          <span className="font-mono text-xs uppercase tracking-wider text-emerald-700">
             02 // Intellectual Context &amp; Disciplinary Grounding
           </span>
-          <h2 className="mt-1 text-2xl font-bold tracking-tight">
+          <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             2. Intellectual Context &amp; Disciplinary Grounding
           </h2>
         </header>
 
-        <div className="space-y-4 text-base leading-relaxed text-neutral-300">
-          <h3 className="text-lg font-semibold text-neutral-100">
+        <div className="space-y-4 text-base leading-relaxed text-slate-700">
+          <h3 className="text-lg font-semibold text-slate-900">
             Problem / Phenomenon Addressed
           </h3>
           <p>
@@ -126,7 +126,7 @@ export function RationaleEssay() {
             mean.
           </p>
 
-          <h3 className="pt-2 text-lg font-semibold text-neutral-100">
+          <h3 className="pt-2 text-lg font-semibold text-slate-900">
             Rationale for Format
           </h3>
           <p>
@@ -138,30 +138,30 @@ export function RationaleEssay() {
             recruiters can inspect how everything works under the hood.
           </p>
 
-          <h3 className="pt-2 text-lg font-semibold text-neutral-100">
+          <h3 className="pt-2 text-lg font-semibold text-slate-900">
             Academic Grounding &amp; Research
           </h3>
           <p>
             This project connects word meaning and word structure with how
             people actually use language in groups. When looking at the words
             themselves, I tag posts for{" "}
-            <strong className="font-medium text-neutral-100">
+            <strong className="font-semibold text-slate-900">
               polysemy and lexical ambiguity
             </strong>
             ,{" "}
-            <strong className="font-medium text-neutral-100">
+            <strong className="font-semibold text-slate-900">
               valence inversion
             </strong>
             ,{" "}
-            <strong className="font-medium text-neutral-100">
+            <strong className="font-semibold text-slate-900">
               multi-word expressions
             </strong>
             , and{" "}
-            <strong className="font-medium text-neutral-100">
+            <strong className="font-semibold text-slate-900">
               morphological blends
             </strong>
             . When it comes to context and banter, I draw on{" "}
-            <strong className="font-medium text-neutral-100">
+            <strong className="font-semibold text-slate-900">
               Gricean implicature
             </strong>{" "}
             (Grice, 1975), speech acts, presupposition, and stance-taking to
@@ -172,7 +172,7 @@ export function RationaleEssay() {
             (Hutto &amp; Gilbert, 2014).
           </p>
 
-          <h3 className="pt-2 text-lg font-semibold text-neutral-100">
+          <h3 className="pt-2 text-lg font-semibold text-slate-900">
             Core Goals
           </h3>
           <p>
@@ -186,18 +186,18 @@ export function RationaleEssay() {
       </section>
 
       {/* 3. User's Manual (or End-User Guide) */}
-      <section className="space-y-6 border-t border-neutral-800 pt-10">
+      <section className="space-y-6 border-t border-slate-200 pt-10">
         <header>
-          <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">
+          <span className="font-mono text-xs uppercase tracking-wider text-emerald-700">
             03 // User&apos;s Manual
           </span>
-          <h2 className="mt-1 text-2xl font-bold tracking-tight">
+          <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             3. User&apos;s Manual (End-User Guide)
           </h2>
         </header>
 
-        <div className="space-y-4 text-base leading-relaxed text-neutral-300">
-          <h3 className="text-lg font-semibold text-neutral-100">
+        <div className="space-y-4 text-base leading-relaxed text-slate-700">
+          <h3 className="text-lg font-semibold text-slate-900">
             Target Audience
           </h3>
           <p>
@@ -209,12 +209,12 @@ export function RationaleEssay() {
             the live site and check my code.
           </p>
 
-          <h3 className="pt-2 text-lg font-semibold text-neutral-100">
+          <h3 className="pt-2 text-lg font-semibold text-slate-900">
             How to Use
           </h3>
           <ol className="list-decimal space-y-2 pl-5">
             <li>
-              <strong className="font-medium text-neutral-100">
+              <strong className="font-semibold text-slate-900">
                 Open the Sociolect Decoder:
               </strong>{" "}
               Filter posts by league (NBA, NFL, Soccer/Fútbol) or linguistic
@@ -222,7 +222,7 @@ export function RationaleEssay() {
               actually mean.
             </li>
             <li>
-              <strong className="font-medium text-neutral-100">
+              <strong className="font-semibold text-slate-900">
                 Test Posts in the Playground:
               </strong>{" "}
               Click any sample tweet or type your own sports post into the box
@@ -230,7 +230,7 @@ export function RationaleEssay() {
               context-aware reading.
             </li>
             <li>
-              <strong className="font-medium text-neutral-100">
+              <strong className="font-semibold text-slate-900">
                 Check Findings &amp; Methodology:
               </strong>{" "}
               Visit the Findings and Method pages to see how often VADER misses
@@ -239,7 +239,7 @@ export function RationaleEssay() {
             </li>
           </ol>
 
-          <h3 className="pt-2 text-lg font-semibold text-neutral-100">
+          <h3 className="pt-2 text-lg font-semibold text-slate-900">
             Potential Adaptations
           </h3>
           <p>
@@ -253,18 +253,18 @@ export function RationaleEssay() {
       </section>
 
       {/* 4. Limitations and Future Directions */}
-      <section className="space-y-6 border-t border-neutral-800 pt-10">
+      <section className="space-y-6 border-t border-slate-200 pt-10">
         <header>
-          <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">
+          <span className="font-mono text-xs uppercase tracking-wider text-emerald-700">
             04 // Limitations &amp; Future Directions
           </span>
-          <h2 className="mt-1 text-2xl font-bold tracking-tight">
+          <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             4. Limitations and Future Directions
           </h2>
         </header>
 
-        <div className="space-y-4 text-base leading-relaxed text-neutral-300">
-          <h3 className="text-lg font-semibold text-neutral-100">
+        <div className="space-y-4 text-base leading-relaxed text-slate-700">
+          <h3 className="text-lg font-semibold text-slate-900">
             Impact &amp; Strengths
           </h3>
           <p>
@@ -275,7 +275,7 @@ export function RationaleEssay() {
             gets the emotion backwards.
           </p>
 
-          <h3 className="pt-2 text-lg font-semibold text-neutral-100">
+          <h3 className="pt-2 text-lg font-semibold text-slate-900">
             Current Limitations
           </h3>
           <p>
@@ -286,7 +286,7 @@ export function RationaleEssay() {
             that fans rely on to catch sarcasm or inside jokes.
           </p>
 
-          <h3 className="pt-2 text-lg font-semibold text-neutral-100">
+          <h3 className="pt-2 text-lg font-semibold text-slate-900">
             Future Extensions
           </h3>
           <p>
@@ -300,17 +300,17 @@ export function RationaleEssay() {
       </section>
 
       {/* 5. References (APA) */}
-      <section className="space-y-4 border-t border-neutral-800 pt-10">
+      <section className="space-y-4 border-t border-slate-200 pt-10">
         <header>
-          <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">
+          <span className="font-mono text-xs uppercase tracking-wider text-emerald-700">
             05 // References
           </span>
-          <h2 className="mt-1 text-2xl font-bold tracking-tight">
+          <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             5. References (APA)
           </h2>
         </header>
 
-        <div className="space-y-3 pl-6 -indent-6 text-sm leading-relaxed text-neutral-300">
+        <div className="space-y-3 pl-6 -indent-6 text-sm leading-relaxed text-slate-700">
           <p>
             Eisenstein, J. (2013). What to do about bad language on the
             internet. In{" "}
