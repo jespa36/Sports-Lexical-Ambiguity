@@ -7,7 +7,9 @@ export const SITE = {
 }
 // <--[Primary nav items: { href, label }]-->
 export const NAV: { href: string; label: string }[] = [
-  { href: '/decoder/', label: '' },
-  { href: '/findings/', label: '' },
-  { href: '/method/', label: '' },
+  { href: '/decoder/', label: 'Decoder' },
+  { href: '/playground/', label: 'Playground' },
+  { href: '/findings/', label: 'Findings' },
+  { href: '/method/', label: 'Method' },
+  { href: '/about/', label: 'About' },
 ]
