@@ -1,5 +1,6 @@
 import { Section } from '@/components/layout/section'
 import { SPORTSTWT_CORPUS } from '@/lib/corpus'
+import { scoreVader } from '@/lib/vader'
 
 const MECHANISMS = [
   'Banter & Mock Insults: Trash talk that actually shows respect or camaraderie inside a fanbase.',
@@ -17,8 +18,8 @@ export function ToolPreview() {
     community: 'NBA',
     tweetText: 'That step-back three was actually disgusting.',
     targetExpression: 'disgusting',
+    vaderBaseline: scoreVader('That step-back three was actually disgusting.'),
     nlpComparison: {
-      standardLabel: 'Negative',
       actualIntent: 'Positive',
       whyNLPFails:
         'A basic sentiment dictionary reads "disgusting" literally instead of catching the NBA fan hype.',
@@ -78,10 +79,10 @@ export function ToolPreview() {
               <div className="mt-6 flex flex-col gap-4 border-t border-slate-200 pt-5 sm:flex-row sm:items-center">
                 <div className="flex size-24 shrink-0 flex-col items-center justify-center border border-slate-300 bg-slate-100 text-center">
                   <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-600">
-                    NLP Label
+                    VADER Label
                   </span>
                   <span className="mt-1 font-mono text-sm font-bold text-slate-900">
-                    {sample.nlpComparison.standardLabel}
+                    {sample.vaderBaseline.label}
                   </span>
                 </div>
                 <div className="text-sm text-slate-700">

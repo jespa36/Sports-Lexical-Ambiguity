@@ -66,7 +66,7 @@ export function AboutSection() {
             <div className="h-full w-3/4 bg-[#0E1E5B]" />
           </div>
           <p className="mt-4 font-mono text-xs text-slate-500">
-            Comparing <code>standardLabel</code> against{' '}
+            Comparing <code>vaderBaseline</code> against{' '}
             <code>actualIntent</code> across annotated posts.
           </p>
         </figure>

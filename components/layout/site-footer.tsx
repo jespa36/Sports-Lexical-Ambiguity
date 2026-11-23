@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SPORTSTWT_CORPUS, TARGET_ENTRIES } from '@/lib/corpus'
 import { Container } from './container'
 
 export function SiteFooter() {
@@ -75,7 +76,9 @@ export function SiteFooter() {
 
         <div className="mt-6 flex flex-col gap-2 font-mono text-xs text-blue-300 md:flex-row md:justify-between">
           <p>LING 230 // Semantics, Pragmatics &amp; Discourse</p>
-          <p>30-Entry Annotated Corpus (Soccer/Futbol, NBA, NFL)</p>
+          <p>
+            {SPORTSTWT_CORPUS.length} of {TARGET_ENTRIES} Entries — Work in Progress (Soccer/Futbol, NBA, NFL)
+          </p>
         </div>
       </Container>
     </footer>
