@@ -1,20 +1,36 @@
 import type { Metadata } from 'next'
 import { PageHeader } from '@/components/layout/page-header'
-import { AnnotationGuide } from '@/components/method/annotation-guide'
-import { ConceptsFramework } from '@/components/method/concepts-framework'
-import { MethodFramework } from '@/components/method/method-framework'
+import { AnnotationSchema } from '@/components/method/annotation-schema'
+import { CorpusSampling } from '@/components/method/corpus-sampling'
+import { VaderBaseline } from '@/components/method/vader-baseline'
 
-// <--[Page title]-->
-export const metadata: Metadata = {}
+export const metadata: Metadata = {
+  title: 'Methodology & Schema | Sports Lexical Ambiguity',
+}
 
 export default function MethodPage() {
   return (
     <>
-      {/* <--[Page header: eyebrow, title, intro]--> */}
-      <PageHeader />
-      <MethodFramework />
-      <AnnotationGuide />
-      <ConceptsFramework />
+      <PageHeader
+        eyebrow={
+          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[#0E1E5B]">
+            Methodology &amp; Schema
+          </span>
+        }
+        title={
+          <span className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+            How the corpus is built and scored
+          </span>
+        }
+      >
+        <p className="text-base leading-relaxed text-slate-700">
+          How posts were selected, how each one is annotated, and how the VADER baseline is
+          produced.
+        </p>
+      </PageHeader>
+      <CorpusSampling />
+      <AnnotationSchema />
+      <VaderBaseline />
     </>
   )
 }
